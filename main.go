@@ -1,7 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"github.com/bgbya/goft-gin/src/controllers"
+	"github.com/bgbya/goft-gin/src/middlewares"
+	"github.com/shenyisyn/goft-gin/goft"
+)
 
 func main() {
-	fmt.Println("hello world")
+	goft.Ignite().
+		Attach(middlewares.NewTokenCheck()).
+		Mount("v1", controllers.NewIndexController()).
+		Launch()
 }
